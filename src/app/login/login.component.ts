@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public onLogin(user: User): void {
+    console.log(user);
     this.showLoading = true;
     this.subscriptions.push(
       this.authenticationService.login(user).subscribe(
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   //Avoid Memory Leaks: called when leaving the component, unsubscribe
   ngOnDestroy(): void {
-
+      this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }
